@@ -33,15 +33,35 @@ fn parse_args(config: &mut String) -> Result<(), u8> {
 }
 
 
+fn recite(title: &String, play: &Play){
+
+    let mut speaker = String::new();
+
+    println!("{}", title);
+
+    for l in play{
+        match l{
+            (line_num,player,text)=>{
+
+                if *player != speaker{
+                    speaker = player.clone():
+                    println!()
+                    println!("{}.",player)
+                }
+                println!("{}", text);
+            }
+        }
+    }
+}
 
 fn main() -> Result<(), u8> {
     
-      let config = &args[1]
-    println!("Processing config file: {}", config_file);
-    // got the config.txt next going to parse it thorugh another module func
-    let name = 
+    let mut config = String::new();
+    if let Err(err) = parse_args(&mut config_file){
+        
+        eprintln!("Error: {err}");
 
+        process::exit(BAD_COMMAND_LINE_ARGS);
+    }
 
-
-    println!("Hello, world!");
 }
