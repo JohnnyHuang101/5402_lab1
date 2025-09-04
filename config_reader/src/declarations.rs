@@ -10,7 +10,6 @@ const PROGRAM_NAME: usize =0;
 const CONFIG_FILE: usize =1;
 const WHINGE_STATUS: usize =2;
 
-const BAD_ARGS: u8 = 8;
 const BAD_COMMAND_LINE_ARGS: u8 = 1;
 const GENERATION_FAILURE: u8 = 1;
 

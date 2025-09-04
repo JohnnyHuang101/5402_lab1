@@ -18,18 +18,18 @@ fn parse_args(config: &mut String) -> Result<(), u8> {
         args.push(arg);
     }
 
-    if !(args.len() == 2 || (args.len() == 3 && args[2] == "whinge")) {
-        usage(&args[0]);
+    if !(args.len() == MIN_ARGS || (args.len() == MAX_ARGS && args[WHINGE_STATUS] == "whinge")) {
+        usage(&args[PROGRAM_NAME]);
         return Err(BAD_COMMAND_LINE_ARGS);
     }
 
-    config = &args[1].clone();
+    config = &args[CONFIG_FILE].clone();
     
-    if args.len() == 3 && args[2] == "whinge" {
+    if args.len() == MAX_ARGS && args[WHINGE_STATUS] == "whinge" {
         WHINGE.store(true, Ordering::SeqCst);
     }
 
-     Ok(())
+    Ok(())
 }
 
 
@@ -64,4 +64,20 @@ fn main() -> Result<(), u8> {
         process::exit(BAD_COMMAND_LINE_ARGS);
     }
 
+    let mut playName = String::new();
+
+    let mut play = Play::new();
+
+    if let Err(err) = script_gen(&config, &mut playName, &mut play){
+        
+        eprintln!("Error: {err}");
+
+        process::exit(GENERATION_FAILURE);
+    }
+
+
+    sort(&mut play);
+    recite(&playName, &play);
+
+    Ok(())
 }
