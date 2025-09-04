@@ -103,3 +103,14 @@ fn process_config(play: &mut Play, config: &PlayConfig) -> Result<(), u8> {
 
 
 
+
+// In your script generation code file write an add_config function that takes a shared (immutable) reference to a String for a line from a configuration file, 
+// and a mutable reference to a PlayConfig variable. The function should declare a vector of shared references to text strings (of type Vec<&str>) 
+// that is initialized by calling the collect method on the result of calling the split_whitespace method on the reference to the string that was passed 
+// into the function (after which the vector will contain references to all the whitespace delimited tokens that were in the string).
+// If fewer or more than two tokens were obtained, then if calling the load method with Ordering::SeqCst on the static AtomicBool variable returns true,
+// the function should print out an appropriate warning message to complain about that. If at least two tokens were obtained the function should then push a tuple consisting of strings for the part name and the part file name (at positions 0 and 1 respectively, in the vector) into the PlayConfig variable.
+
+fn add_config(a_line: &String, a_play_config: &mut PlayConfig) {
+    //TODO
+}
